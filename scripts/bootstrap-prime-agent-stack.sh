@@ -105,10 +105,22 @@ else
   skip "NovA-code-review-graph"
 fi
 
-# --- 5. notebooklm-py: install deps (still needs interactive login) -------
+# --- 5. notebooklm-py: install deps, headless auth via master token -------
 if [ -d "$BASE_DIR/notebooklm-py" ]; then
   log "Installing notebooklm-py ..."
-  (cd "$BASE_DIR/notebooklm-py" && uv sync --frozen --extra browser --extra dev --extra markdown --extra mcp) || log "notebooklm-py install failed"
+  (cd "$BASE_DIR/notebooklm-py" && uv sync --frozen --extra browser --extra dev --extra markdown --extra headless --extra mcp) || log "notebooklm-py install failed"
+
+  if [ -n "${NOTEBOOKLM_MASTER_TOKEN_JSON:-}" ]; then
+    log "notebooklm-py: materializing master token, re-minting cookies (headless, no browser) ..."
+    NLM_PROFILE_DIR="$HOME/.notebooklm/profiles/default"
+    mkdir -p "$NLM_PROFILE_DIR"
+    printf '%s' "$NOTEBOOKLM_MASTER_TOKEN_JSON" > "$NLM_PROFILE_DIR/master_token.json"
+    chmod 600 "$NLM_PROFILE_DIR/master_token.json"
+    (cd "$BASE_DIR/notebooklm-py" && uv run notebooklm login --master-token-refresh) \
+      || log "notebooklm-py: master-token re-mint failed — token may be revoked, needs a fresh bootstrap"
+  else
+    log "notebooklm-py: NOTEBOOKLM_MASTER_TOKEN_JSON not set — skipping headless auth, run 'notebooklm login' interactively once to bootstrap a master token"
+  fi
 else
   skip "notebooklm-py"
 fi
