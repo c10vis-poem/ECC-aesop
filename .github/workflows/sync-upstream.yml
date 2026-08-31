@@ -1,0 +1,54 @@
+name: Sync upstream (affaan-m/ECC)
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # weekly, Monday 06:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch upstream
+        run: |
+          git remote add upstream https://github.com/affaan-m/ECC.git
+          git fetch upstream main
+
+      - name: Check if already up to date
+        id: check
+        run: |
+          if git merge-base --is-ancestor upstream/main HEAD; then
+            echo "uptodate=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "uptodate=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      # This merge is expected to fail (and fail the job) on a real conflict
+      # between upstream and this fork's own commits. That is intentional —
+      # conflicts need a human, not a silent auto-resolution.
+      - name: Create sync branch and merge
+        if: steps.check.outputs.uptodate == 'false'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -B sync/upstream
+          git merge upstream/main --no-edit
+          git push origin sync/upstream --force
+
+      - name: Open or update PR
+        if: steps.check.outputs.uptodate == 'false'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create --title "Sync upstream (affaan-m/ECC)" \
+            --body "Automated merge of upstream/main into this fork. Review before merging — this fork carries local customizations that could conflict with future upstream changes." \
+            --base main --head sync/upstream \
+          || echo "PR already open for sync/upstream"
