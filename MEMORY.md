@@ -6,3 +6,9 @@ Durable facts about this repo. Dated; newest first. Updated at session wrap-up.
 - `local-inventory.json`: a snapshot (2026-09-07) of how ECC was wired on the phone (68 agents, 9 hooks, 3 MCP servers, 94 commands); runtime details are stale.
 - CI had failed on main since 2026-09-06: the "Validate workflow security" step rejected `sync-upstream.yml` for persisting checkout credentials. Fixed (persist-credentials: false; the push uses GITHUB_TOKEN explicitly).
 - Stale launchers on the phone: `~/.local/bin/ecc-dashboard` and `nanoclaw` point at a deleted ECC cache 2.2.0.
+
+## 2026-10-23
+- PRs #7 and #8 (both merged 2026-10-23) landed `local-inventory.json`, `MEMORY.md` and the `sync-upstream.yml` credential fix on origin/main.
+- Branch protection on main requires `Lint` and `Security Scan`.
+- The local clone `~/repos/ECC-aesop` was 417 commits behind origin/main at wrap-up.
+- No AGENTS.md or CLAUDE.md text mentions OmniRoute, mem0, terrestrial-brain, OpenWiki or Qwen3-VL (grep).
