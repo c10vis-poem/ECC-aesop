@@ -1,0 +1,662 @@
+{
+  "_comment": "SNAPSHOT 2026-09-07 of how ECC was wired on the operator's phone. ECC has been parked since (~/.claude/ecc-parked/); CLAUDE_PLUGIN_ROOT is unset, so runtime details, health_issues and pending_actions are stale. Keep as the reference map for reactivating ECC.",
+  "generated": "2026-09-07",
+  "schema_version": 1,
+  "identity": {
+    "name": "ecc-universal",
+    "fork_version": "2.2.1",
+    "cache_version": "2.2.0",
+    "fork_path": "/data/data/com.termux/files/home/repos/ECC-aesop",
+    "cache_path": "/data/data/com.termux/files/home/.claude/plugins/cache/ecc/ecc/2.2.0",
+    "upstream": "https://github.com/affaan-m/ECC",
+    "fork_note": "CLAUDE_PLUGIN_ROOT routes all hooks to fork_path (2.2.1), not cache_path (2.2.0)"
+  },
+  "runtime": {
+    "CLAUDE_PLUGIN_ROOT": "/data/data/com.termux/files/home/repos/ECC-aesop",
+    "ECC_HOOK_PROFILE": "strict",
+    "ECC_DISABLED_HOOKS": "pre:edit-write:gateguard-fact-force",
+    "state_dir": "/data/data/com.termux/files/home/.claude/ecc",
+    "state_dir_exists": false,
+    "state_dir_note": "MISSING — mkdir -p ~/.claude/ecc required; ~9 hooks silently failing until created"
+  },
+  "marketplace": {
+    "registered_name": "ecc",
+    "source": "directory",
+    "path": "/data/data/com.termux/files/home/repos/ECC-aesop",
+    "wizard_compatible": false,
+    "wizard_note": "isOfficialMarketplace() check fails for directory source — wizard bypassed intentionally. CLAUDE_PLUGIN_ROOT is the runtime override."
+  },
+  "extensions": {
+    "skills": {
+      "count": 286,
+      "path": "skills/"
+    },
+    "agents": {
+      "count": 68,
+      "path": "agents/"
+    },
+    "slash_commands": {
+      "count": 94,
+      "path": "commands/"
+    },
+    "rules": {
+      "count": 23,
+      "path": "rules/"
+    },
+    "hooks": {
+      "count": 43,
+      "path": "scripts/hooks/"
+    },
+    "mcp_servers": {
+      "count": 35,
+      "path": "mcp-configs/mcp-servers.json"
+    }
+  },
+  "slash_commands": [
+    "aside",
+    "auto-update",
+    "build-fix",
+    "checkpoint",
+    "code-review",
+    "cost-report",
+    "cpp-build",
+    "cpp-review",
+    "cpp-test",
+    "ecc-guide",
+    "epic-claim",
+    "epic-decompose",
+    "epic-publish",
+    "epic-review",
+    "epic-sync",
+    "epic-unblock",
+    "epic-validate",
+    "evolve",
+    "fastapi-review",
+    "feature-dev",
+    "flutter-build",
+    "flutter-review",
+    "flutter-test",
+    "gan-build",
+    "gan-design",
+    "go-build",
+    "go-review",
+    "go-test",
+    "gradle-build",
+    "harness-audit",
+    "hookify",
+    "hookify-configure",
+    "hookify-help",
+    "hookify-list",
+    "instinct-export",
+    "instinct-import",
+    "instinct-status",
+    "jira",
+    "kotlin-build",
+    "kotlin-review",
+    "kotlin-test",
+    "learn",
+    "learn-eval",
+    "loop-start",
+    "loop-status",
+    "marketing-campaign",
+    "model-route",
+    "multi-backend",
+    "multi-execute",
+    "multi-frontend",
+    "multi-plan",
+    "multi-workflow",
+    "orch-add-feature",
+    "orch-build-mvp",
+    "orch-change-feature",
+    "orch-fix-defect",
+    "orch-refine-code",
+    "orch-review",
+    "plan",
+    "plan-canvas",
+    "plan-prd",
+    "pm2",
+    "pr",
+    "project-init",
+    "projects",
+    "promote",
+    "prp-commit",
+    "prp-implement",
+    "prp-plan",
+    "prp-pr",
+    "prp-prd",
+    "prune",
+    "python-review",
+    "quality-gate",
+    "react-build",
+    "react-review",
+    "react-test",
+    "refactor-clean",
+    "resume-session",
+    "review-pr",
+    "rust-build",
+    "rust-review",
+    "rust-test",
+    "santa-loop",
+    "save-session",
+    "security-scan",
+    "sessions",
+    "setup-pm",
+    "skill-create",
+    "skill-health",
+    "test-coverage",
+    "update-codemaps",
+    "update-docs",
+    "vue-review"
+  ],
+  "agents": [
+    "a11y-architect",
+    "agent-evaluator",
+    "architect",
+    "build-error-resolver",
+    "chief-of-staff",
+    "code-architect",
+    "code-explorer",
+    "code-reviewer",
+    "code-simplifier",
+    "comment-analyzer",
+    "conversation-analyzer",
+    "cpp-build-resolver",
+    "cpp-reviewer",
+    "csharp-reviewer",
+    "dart-build-resolver",
+    "database-reviewer",
+    "django-build-resolver",
+    "django-reviewer",
+    "doc-updater",
+    "docs-lookup",
+    "e2e-runner",
+    "fastapi-reviewer",
+    "flutter-reviewer",
+    "fsharp-reviewer",
+    "gan-evaluator",
+    "gan-generator",
+    "gan-planner",
+    "go-build-resolver",
+    "go-reviewer",
+    "harmonyos-app-resolver",
+    "harness-optimizer",
+    "healthcare-reviewer",
+    "homelab-architect",
+    "java-build-resolver",
+    "java-reviewer",
+    "kotlin-build-resolver",
+    "kotlin-reviewer",
+    "loop-operator",
+    "marketing-agent",
+    "mle-reviewer",
+    "network-architect",
+    "network-config-reviewer",
+    "network-troubleshooter",
+    "opensource-forker",
+    "opensource-packager",
+    "opensource-sanitizer",
+    "performance-optimizer",
+    "php-reviewer",
+    "planner",
+    "pr-test-analyzer",
+    "python-reviewer",
+    "pytorch-build-resolver",
+    "rag-pipeline-reviewer",
+    "react-build-resolver",
+    "react-reviewer",
+    "refactor-cleaner",
+    "rust-build-resolver",
+    "rust-reviewer",
+    "security-reviewer",
+    "seo-specialist",
+    "silent-failure-hunter",
+    "spec-miner",
+    "swift-build-resolver",
+    "swift-reviewer",
+    "tdd-guide",
+    "type-design-analyzer",
+    "typescript-reviewer",
+    "vue-reviewer"
+  ],
+  "mcp_servers": {
+    "local_process": [
+      {
+        "name": "nexus",
+        "command": "nexus"
+      },
+      {
+        "name": "ito-compute",
+        "command": "node"
+      },
+      {
+        "name": "jira",
+        "command": "uvx"
+      },
+      {
+        "name": "github",
+        "command": "npx"
+      },
+      {
+        "name": "firecrawl",
+        "command": "npx"
+      },
+      {
+        "name": "supabase",
+        "command": "npx"
+      },
+      {
+        "name": "ecc-memory-vault",
+        "command": "ecc-memory-mcp"
+      },
+      {
+        "name": "memory",
+        "command": "npx"
+      },
+      {
+        "name": "omega-memory",
+        "command": "uvx"
+      },
+      {
+        "name": "longhand",
+        "command": "longhand"
+      },
+      {
+        "name": "sequential-thinking",
+        "command": "npx"
+      },
+      {
+        "name": "railway",
+        "command": "npx"
+      },
+      {
+        "name": "exa-web-search",
+        "command": "npx"
+      },
+      {
+        "name": "context7",
+        "command": "npx"
+      },
+      {
+        "name": "codescene",
+        "command": "npx"
+      },
+      {
+        "name": "magic",
+        "command": "npx"
+      },
+      {
+        "name": "filesystem",
+        "command": "npx"
+      },
+      {
+        "name": "playwright",
+        "command": "npx"
+      },
+      {
+        "name": "fal-ai",
+        "command": "npx"
+      },
+      {
+        "name": "browserbase",
+        "command": "npx"
+      },
+      {
+        "name": "token-optimizer",
+        "command": "npx"
+      },
+      {
+        "name": "confluence",
+        "command": "npx"
+      },
+      {
+        "name": "squish",
+        "command": "npx"
+      },
+      {
+        "name": "evalview",
+        "command": "python3"
+      }
+    ],
+    "http_remote": [
+      {
+        "name": "vercel",
+        "url": "https://mcp.vercel.com"
+      },
+      {
+        "name": "cloudflare-docs",
+        "url": "https://docs.mcp.cloudflare.com/mcp"
+      },
+      {
+        "name": "cloudflare-workers-builds",
+        "url": "https://builds.mcp.cloudflare.com/mcp"
+      },
+      {
+        "name": "cloudflare-workers-bindings",
+        "url": "https://bindings.mcp.cloudflare.com/mcp"
+      },
+      {
+        "name": "cloudflare-observability",
+        "url": "https://observability.mcp.cloudflare.com/mcp"
+      },
+      {
+        "name": "clickhouse",
+        "url": "https://mcp.clickhouse.cloud/mcp"
+      },
+      {
+        "name": "parallel-search",
+        "url": "https://search.parallel.ai/mcp"
+      },
+      {
+        "name": "memxus",
+        "url": "https://mcp.memxus.com/mcp"
+      },
+      {
+        "name": "browser-use",
+        "url": "https://api.browser-use.com/mcp"
+      },
+      {
+        "name": "devfleet",
+        "url": "http://localhost:18801/mcp"
+      },
+      {
+        "name": "laraplugins",
+        "url": "https://laraplugins.io/mcp/plugins"
+      }
+    ],
+    "session_status_note": "Most MCPs failed to connect in session 2026-09-07. claude-ai connectors (Gmail, Drive, HuggingFace, code-review-graph) are the only ones confirmed connected this session. All others returned connection errors or were never attempted."
+  },
+  "hooks": {
+    "total_logical": 43,
+    "settings_json_entries": 22,
+    "dispatcher_sub_hooks": 21,
+    "settings_entries": [
+      {
+        "id": "pre:bash:dispatcher",
+        "event": "PreToolUse",
+        "matcher": "Bash",
+        "dispatches": 6
+      },
+      {
+        "id": "pre:write:doc-file-warning",
+        "event": "PreToolUse",
+        "matcher": "Write"
+      },
+      {
+        "id": "pre:edit-write:suggest-compact",
+        "event": "PreToolUse",
+        "matcher": "Edit|Write"
+      },
+      {
+        "id": "pre:observe:continuous-learning",
+        "event": "PreToolUse",
+        "matcher": ".*",
+        "async": true
+      },
+      {
+        "id": "pre:governance-capture",
+        "event": "PreToolUse",
+        "matcher": "Bash|Write|Edit|MultiEdit"
+      },
+      {
+        "id": "pre:config-protection",
+        "event": "PreToolUse",
+        "matcher": "Write|Edit|MultiEdit"
+      },
+      {
+        "id": "pre:mcp-health-check",
+        "event": "PreToolUse",
+        "matcher": ".*"
+      },
+      {
+        "id": "pre:edit-write:gateguard-fact-force",
+        "event": "PreToolUse",
+        "matcher": "Edit|Write|MultiEdit",
+        "status": "DISABLED"
+      },
+      {
+        "id": "pre:compact",
+        "event": "PreCompact",
+        "matcher": ".*"
+      },
+      {
+        "id": "session:start",
+        "event": "SessionStart",
+        "matcher": ".*"
+      },
+      {
+        "id": "session-start:plan-canvas-sessions",
+        "event": "SessionStart",
+        "matcher": ".*"
+      },
+      {
+        "id": "post:dispatcher:sync",
+        "event": "PostToolUse",
+        "matcher": ".*",
+        "dispatches": 7
+      },
+      {
+        "id": "post:dispatcher:async",
+        "event": "PostToolUse",
+        "matcher": ".*",
+        "async": true,
+        "dispatches": 4
+      },
+      {
+        "id": "post:mcp-health-check",
+        "event": "PostToolUseFailure",
+        "matcher": ".*"
+      },
+      {
+        "id": "post:skill:track",
+        "event": "PostToolUseFailure",
+        "matcher": "Skill"
+      },
+      {
+        "id": "stop:plan-canvas-pending",
+        "event": "Stop",
+        "matcher": ".*"
+      },
+      {
+        "id": "stop:format-typecheck",
+        "event": "Stop",
+        "matcher": ".*",
+        "timeout": 300
+      },
+      {
+        "id": "stop:check-console-log",
+        "event": "Stop",
+        "matcher": ".*"
+      },
+      {
+        "id": "stop:session-end",
+        "event": "Stop",
+        "matcher": ".*",
+        "async": true
+      },
+      {
+        "id": "stop:evaluate-session",
+        "event": "Stop",
+        "matcher": ".*",
+        "async": true
+      },
+      {
+        "id": "stop:cost-tracker",
+        "event": "Stop",
+        "matcher": ".*",
+        "async": true
+      },
+      {
+        "id": "session:end:marker",
+        "event": "SessionEnd",
+        "matcher": ".*",
+        "async": true
+      }
+    ],
+    "pre_bash_sub_hooks": [
+      {
+        "id": "block-no-verify",
+        "profile": "minimal,standard,strict"
+      },
+      {
+        "id": "auto-tmux-dev",
+        "profile": "standard,strict"
+      },
+      {
+        "id": "tmux-reminder",
+        "profile": "standard,strict"
+      },
+      {
+        "id": "git-push-reminder",
+        "profile": "standard,strict"
+      },
+      {
+        "id": "commit-quality",
+        "profile": "standard,strict"
+      },
+      {
+        "id": "gateguard-fact-force",
+        "profile": "standard,strict",
+        "status": "DISABLED_VIA_ENV"
+      }
+    ],
+    "post_bash_sub_hooks": [
+      {
+        "id": "command-log-audit",
+        "status": "EXECUTING",
+        "evidence": "metrics/tool-usage.jsonl 1.2MB"
+      },
+      {
+        "id": "command-log-cost",
+        "status": "EXECUTING",
+        "evidence": "metrics/costs.jsonl 382KB"
+      },
+      {
+        "id": "pr-created",
+        "status": "CONDITIONAL",
+        "note": "fires on git push pattern"
+      },
+      {
+        "id": "build-complete",
+        "status": "CONDITIONAL",
+        "note": "fires on build pattern"
+      }
+    ],
+    "post_sync_sub_hooks": [
+      {
+        "id": "design-quality-check",
+        "status": "SILENT_FAIL",
+        "reason": "writes to ~/.claude/ecc/ — MISSING"
+      },
+      {
+        "id": "accumulator",
+        "status": "SILENT_FAIL",
+        "reason": "writes to ~/.claude/ecc/ — MISSING"
+      },
+      {
+        "id": "console-warn",
+        "status": "SILENT_FAIL",
+        "reason": "writes to ~/.claude/ecc/ — MISSING"
+      },
+      {
+        "id": "governance-capture",
+        "status": "SILENT_FAIL",
+        "reason": "writes to ~/.claude/ecc/ — MISSING"
+      },
+      {
+        "id": "session-activity-tracker",
+        "status": "EXECUTING",
+        "evidence": "state file confirmed"
+      },
+      {
+        "id": "ecc-metrics-bridge",
+        "status": "EXECUTING",
+        "evidence": "metrics/tool-usage.jsonl growing"
+      },
+      {
+        "id": "ecc-context-monitor",
+        "status": "SILENT_FAIL",
+        "reason": "writes to ~/.claude/ecc/ — MISSING"
+      }
+    ],
+    "post_async_sub_hooks": [
+      {
+        "id": "post:bash:dispatcher",
+        "status": "EXECUTING",
+        "note": "runs post_bash_sub_hooks above"
+      },
+      {
+        "id": "quality-gate",
+        "status": "UNKNOWN"
+      },
+      {
+        "id": "observe",
+        "status": "SILENT_FAIL",
+        "reason": "writes to ~/.claude/ecc/ — MISSING"
+      },
+      {
+        "id": "skill:track",
+        "status": "UNKNOWN"
+      }
+    ],
+    "status_summary": {
+      "EXECUTING": 6,
+      "SILENT_FAIL": 8,
+      "DISABLED": 2,
+      "CONDITIONAL": 2,
+      "UNKNOWN": 25
+    }
+  },
+  "health_issues": [
+    {
+      "severity": "HIGH",
+      "issue": "~/.claude/ecc/ state directory missing",
+      "impact": "8 hooks silently failing — no error output, no state written",
+      "fix": "mkdir -p /data/data/com.termux/files/home/.claude/ecc",
+      "resolved": false
+    },
+    {
+      "severity": "HIGH",
+      "issue": "NanoClaw round-trip unverified",
+      "impact": "Unknown whether REPL can complete a prompt→response cycle",
+      "fix": "Run nanoclaw, send a test prompt, confirm response",
+      "resolved": false
+    },
+    {
+      "severity": "HIGH",
+      "issue": "Dashboard HTTP unverified",
+      "impact": "Port 3456 not confirmed bound; tablet SSH route broken",
+      "fix": "ecc-dashboard &; sleep 2; curl http://127.0.0.1:3456",
+      "resolved": false
+    },
+    {
+      "severity": "MEDIUM",
+      "issue": "SSH password not set",
+      "impact": "Tablet cannot access dashboard",
+      "fix": "passwd",
+      "resolved": false
+    },
+    {
+      "severity": "MEDIUM",
+      "issue": "Setup wizard incompatible with local fork marketplace source",
+      "impact": "install-guided.js and setup.js fail with INVALID_MARKETPLACE_INVENTORY",
+      "fix": "Wizard bypassed via CLAUDE_PLUGIN_ROOT — wizard not required for operation",
+      "resolved": true,
+      "resolution_note": "CLAUDE_PLUGIN_ROOT set to fork path 2026-09-07"
+    },
+    {
+      "severity": "MEDIUM",
+      "issue": "Fork 2.2.1 running but cache shows 2.2.0",
+      "impact": "claude plugin list may show stale version",
+      "fix": "CLAUDE_PLUGIN_ROOT override ensures fork version runs; cache version is display-only",
+      "resolved": true
+    }
+  ],
+  "pending_actions": [
+    "mkdir -p ~/.claude/ecc  (unblocks 8 silent-failing hooks)",
+    "verify NanoClaw round-trip",
+    "verify dashboard HTTP on :3456",
+    "run: passwd  (SSH access for tablet)",
+    "revert unauthorized install-daemons.sh edits ($HOME/aesop → $HOME/repos/aesop-xi x3)",
+    "revise 6 PRs on restructure/drive-file-tree to match Document 05"
+  ]
+}
